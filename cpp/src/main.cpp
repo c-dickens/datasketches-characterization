@@ -70,6 +70,14 @@
 #include "req_merge_timing_profile.hpp"
 #include "req_error_vs_rank_profile.hpp"
 
+// Count-Min Sketch profiles
+#include "count_min_sketch_accuracy_profile.hpp"
+#include "count_min_sketch_error_vs_freq_profile.hpp"
+#include "count_min_sketch_error_distribution_profile.hpp"
+#include "count_min_sketch_error_vs_width_profile.hpp"
+#include "count_min_sketch_failure_probability_profile.hpp"
+#include "count_min_sketch_stream_length_analysis_profile.hpp"
+
 using namespace datasketches;
 typedef std::unique_ptr<job_profile> job_profile_ptr;
 
@@ -119,6 +127,14 @@ int main(int argc, char **argv) {
   job_profile::add("kll-sketch-memory-int64", job_profile_ptr(new kll_sketch_memory_profile<int64_t>()));
 
   job_profile::add("hll-cross-lang", job_profile_ptr(new hll_cross_language_profile()));
+
+  // Count-Min Sketch profiles
+  job_profile::add("count-min-sketch-accuracy", job_profile_ptr(new count_min_sketch_accuracy_profile()));
+  job_profile::add("count-min-sketch-error-vs-freq", job_profile_ptr(new count_min_sketch_error_vs_freq_profile()));
+  job_profile::add("count-min-sketch-error-distribution", job_profile_ptr(new count_min_sketch_error_distribution_profile()));
+  job_profile::add("count-min-sketch-error-vs-width", job_profile_ptr(new count_min_sketch_error_vs_width_profile()));
+  job_profile::add("count-min-sketch-failure-probability", job_profile_ptr(new count_min_sketch_failure_probability_profile()));
+  job_profile::add("count-min-sketch-stream-length-analysis", job_profile_ptr(new count_min_sketch_stream_length_analysis_profile()));
 
   if (argc == 2) {
     datasketches::job_profile& profile = datasketches::job_profile::instance(argv[1]);

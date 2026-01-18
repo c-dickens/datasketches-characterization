@@ -106,4 +106,17 @@ target_sources(characterization
     src/tuple_union_timing_profile.hpp
     src/zipf_distribution.cpp
     src/zipf_distribution.hpp
+    # Count-Min Sketch profiles
+    src/count_min_sketch_accuracy_profile.cpp
+    src/count_min_sketch_accuracy_profile.hpp
+    src/count_min_sketch_error_vs_freq_profile.cpp
+    src/count_min_sketch_error_vs_freq_profile.hpp
+    src/count_min_sketch_error_distribution_profile.cpp
+    src/count_min_sketch_error_distribution_profile.hpp
+    src/count_min_sketch_error_vs_width_profile.cpp
+    src/count_min_sketch_error_vs_width_profile.hpp
+    src/count_min_sketch_failure_probability_profile.cpp
+    src/count_min_sketch_failure_probability_profile.hpp
+    src/count_min_sketch_stream_length_analysis_profile.cpp
+    src/count_min_sketch_stream_length_analysis_profile.hpp
 )
