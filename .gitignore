@@ -59,6 +59,7 @@ bin/
 
 # Build artifacts
 cpp/Default/
+**/build/
 **/out/
 **/jarsIn/
 **/build.xml
