@@ -70,6 +70,8 @@
 #include "req_merge_timing_profile.hpp"
 #include "req_error_vs_rank_profile.hpp"
 
+#include "count_min_sketch_error_vs_width_profile.hpp"
+
 using namespace datasketches;
 typedef std::unique_ptr<job_profile> job_profile_ptr;
 
@@ -119,6 +121,8 @@ int main(int argc, char **argv) {
   job_profile::add("kll-sketch-memory-int64", job_profile_ptr(new kll_sketch_memory_profile<int64_t>()));
 
   job_profile::add("hll-cross-lang", job_profile_ptr(new hll_cross_language_profile()));
+
+  job_profile::add("count-min-sketch-error-vs-width", job_profile_ptr(new count_min_sketch_error_vs_width_profile()));
 
   if (argc == 2) {
     datasketches::job_profile& profile = datasketches::job_profile::instance(argv[1]);
