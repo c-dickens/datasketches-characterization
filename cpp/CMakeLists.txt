@@ -17,7 +17,7 @@
 
 add_executable(characterization)
 
-find_package(DataSketches 5.3 REQUIRED)
+find_package(DataSketches 5.2 REQUIRED)
 target_link_libraries(characterization PUBLIC ${DATASKETCHES_LIB})
 target_include_directories(characterization PUBLIC ${DATASKETCHES_INCLUDE_DIR})
 
@@ -106,4 +106,6 @@ target_sources(characterization
     src/tuple_union_timing_profile.hpp
     src/zipf_distribution.cpp
     src/zipf_distribution.hpp
+    src/count_min_sketch_error_vs_width_profile.cpp
+    src/count_min_sketch_error_vs_width_profile.hpp
 )
