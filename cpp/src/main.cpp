@@ -43,6 +43,7 @@
 #include "kll_merge_accuracy_profile.hpp"
 
 #include "frequent_items_sketch_accuracy_profile.hpp"
+#include "cms_accuracy_profile.hpp"
 
 #include "cpc_sketch_accuracy_profile.hpp"
 #include "cpc_union_accuracy_profile.hpp"
@@ -101,6 +102,7 @@ int main(int argc, char **argv) {
   job_profile::add("kll-sketch-accuracy", job_profile_ptr(new kll_sketch_accuracy_profile()));
   job_profile::add("kll-merge-accuracy", job_profile_ptr(new kll_merge_accuracy_profile()));
   job_profile::add("fi-sketch-accuracy", job_profile_ptr(new frequent_items_sketch_accuracy_profile()));
+  job_profile::add("cms-sketch-accuracy", job_profile_ptr(new cms_accuracy_profile()));
   job_profile::add("req-error-vs-rank-double", job_profile_ptr(new req_error_vs_rank_profile<double>()));
 
   job_profile::add("tdigest-timing-double", job_profile_ptr(new tdigest_timing_profile<double>()));

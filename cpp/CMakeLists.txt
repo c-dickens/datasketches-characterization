@@ -106,4 +106,6 @@ target_sources(characterization
     src/tuple_union_timing_profile.hpp
     src/zipf_distribution.cpp
     src/zipf_distribution.hpp
+    src/cms_accuracy_profile.cpp
+    src/cms_accuracy_profile.hpp
 )
