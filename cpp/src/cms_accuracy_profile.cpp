@@ -49,15 +49,17 @@ namespace datasketches {
  * We target d/w ~ 4 by setting lg_range = lg_width + 2
  *
  * Why the theoretical error bound (epsilon * N) is constant across widths:
- * - Theoretical bound = (e/w) * N where w = width, N = stream_length
- * - We scale stream_length proportionally with width to maintain constant load factor:
- *     distinct_items = 4 * width, stream_length = 64 * width
+ * - Theoretical bound = (e/w) * N where w = width, N = total stream weight
+ * - We scale stream weight proportionally with width to maintain constant load factor:
+ *     distinct_items = 4 * width, stream_weight = 64 * width
  * - Therefore: (e/w) * (64*w) = 64*e ≈ 174 (constant!)
- * - This design choice lets us compare how ACTUAL errors scale with width
- *   while keeping the theoretical bound fixed as a reference line.
- * - The key insight: actual errors decrease with width even though the
- *   theoretical bound stays constant, showing CMS performs better than
- *   worst-case guarantees predict.
+ *
+ * Why constant load factor matters for comparison:
+ * - Ensures all width configurations operate in the same collision regime
+ * - Avoids comparing overloaded small sketches vs underloaded large ones
+ * - The constant theoretical bound provides a fixed reference line
+ * - Empirical errors staying well below this bound (and roughly constant)
+ *   shows CMS performs consistently relative to worst-case guarantees
  */
 void cms_accuracy_profile::run() {
   // Configuration parameters
