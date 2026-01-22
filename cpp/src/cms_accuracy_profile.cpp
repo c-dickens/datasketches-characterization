@@ -47,6 +47,17 @@ namespace datasketches {
  * - Saturated (d/w > 32): Everything collides, worst-case throughout
  *
  * We target d/w ~ 4 by setting lg_range = lg_width + 2
+ *
+ * Why the theoretical error bound (epsilon * N) is constant across widths:
+ * - Theoretical bound = (e/w) * N where w = width, N = stream_length
+ * - We scale stream_length proportionally with width to maintain constant load factor:
+ *     distinct_items = 4 * width, stream_length = 64 * width
+ * - Therefore: (e/w) * (64*w) = 64*e ≈ 174 (constant!)
+ * - This design choice lets us compare how ACTUAL errors scale with width
+ *   while keeping the theoretical bound fixed as a reference line.
+ * - The key insight: actual errors decrease with width even though the
+ *   theoretical bound stays constant, showing CMS performs better than
+ *   worst-case guarantees predict.
  */
 void cms_accuracy_profile::run() {
   // Configuration parameters
