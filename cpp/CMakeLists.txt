@@ -104,6 +104,8 @@ target_sources(characterization
     src/tuple_sketch_timing_profile.hpp
     src/tuple_union_timing_profile.cpp
     src/tuple_union_timing_profile.hpp
+    src/count_min_sketch_accuracy_profile.cpp
+    src/count_min_sketch_accuracy_profile.hpp
     src/zipf_distribution.cpp
     src/zipf_distribution.hpp
 )

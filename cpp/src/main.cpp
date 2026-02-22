@@ -53,12 +53,6 @@
 #include "theta_sketch_accuracy_profile.hpp"
 #include "theta_union_accuracy_profile.hpp"
 
-#include "tdigest_timing_profile.hpp"
-#include "tdigest_accuracy_profile_impl.hpp"
-#include "tdigest_sketch_accuracy_profile.hpp"
-#include "tdigest_merge_accuracy_profile.hpp"
-#include "tdigest_memory_profile.hpp"
-
 #include "cpc_sketch_memory_profile.hpp"
 #include "hll_sketch_memory_profile.hpp"
 #include "theta_sketch_memory_profile.hpp"
@@ -68,7 +62,8 @@
 
 #include "req_sketch_timing_profile.hpp"
 #include "req_merge_timing_profile.hpp"
-#include "req_error_vs_rank_profile.hpp"
+
+#include "count_min_sketch_accuracy_profile.hpp"
 
 using namespace datasketches;
 typedef std::unique_ptr<job_profile> job_profile_ptr;
@@ -101,16 +96,6 @@ int main(int argc, char **argv) {
   job_profile::add("kll-sketch-accuracy", job_profile_ptr(new kll_sketch_accuracy_profile()));
   job_profile::add("kll-merge-accuracy", job_profile_ptr(new kll_merge_accuracy_profile()));
   job_profile::add("fi-sketch-accuracy", job_profile_ptr(new frequent_items_sketch_accuracy_profile()));
-  job_profile::add("req-error-vs-rank-double", job_profile_ptr(new req_error_vs_rank_profile<double>()));
-
-  job_profile::add("tdigest-timing-double", job_profile_ptr(new tdigest_timing_profile<double>()));
-  job_profile::add("tdigest-sketch-accuracy-double", job_profile_ptr(new tdigest_sketch_accuracy_profile<double>()));
-  job_profile::add("tdigest-merge-accuracy-double", job_profile_ptr(new tdigest_merge_accuracy_profile<double>()));
-  job_profile::add("tdigest-timing-float", job_profile_ptr(new tdigest_timing_profile<float>()));
-  job_profile::add("tdigest-sketch-accuracy-float", job_profile_ptr(new tdigest_sketch_accuracy_profile<float>()));
-  job_profile::add("tdigest-merge-accuracy-float", job_profile_ptr(new tdigest_merge_accuracy_profile<float>()));
-  job_profile::add("tdigest-memory-float", job_profile_ptr(new tdigest_memory_profile<float>()));
-  job_profile::add("tdigest-memory-double", job_profile_ptr(new tdigest_memory_profile<double>()));
 
   job_profile::add("cpc-sketch-memory", job_profile_ptr(new cpc_sketch_memory_profile()));
   job_profile::add("hll-sketch-memory", job_profile_ptr(new hll_sketch_memory_profile()));
@@ -119,6 +104,8 @@ int main(int argc, char **argv) {
   job_profile::add("kll-sketch-memory-int64", job_profile_ptr(new kll_sketch_memory_profile<int64_t>()));
 
   job_profile::add("hll-cross-lang", job_profile_ptr(new hll_cross_language_profile()));
+
+  job_profile::add("cms-sketch-accuracy", job_profile_ptr(new count_min_sketch_accuracy_profile()));
 
   if (argc == 2) {
     datasketches::job_profile& profile = datasketches::job_profile::instance(argv[1]);
